@@ -1,0 +1,40 @@
+server:
+  port: 8001
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis-cfg.xml  # 配置mybatis配置文件路径
+  type-aliases-package: com.gxw.msc.entity            # 所有entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                 # mapper映射文件
+ 
+spring:
+  application:
+    name: msc-goods
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource      # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver        # mysql驱动包
+    url: jdbc:mysql://127.0.0.1:3306/cloudDB01        # 数据库url
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                                     # 数据库连接池的最小维持连接数
+      initial-size: 5                                 # 初始化连接数
+      max-total: 5                                    # 最大连接数
+      max-wait-millis: 200                            # 等待连接获取的最大超时时间
+# 添加部分eureka
+eureka:
+  client: # 客户端注册eureka服务列表内
+    service-url:
+      # 单机 defaultZone: http://127.0.0.1:7001/eureka
+      # 集群 要全部注册
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance: 
+    instance-id: msc-goods8001 # 自定义 eureka 微服务名字
+    prefer-ip-address: true # 访问路径可以显示IP地址
+
+# 添加info信息页面内容
+info:
+  app.name: gxw-msc
+  company.name: www.gxw.com
+  build.artifactId: msc-provider-goods-8001
+  build.version: 0.0.1-SNAPSHOT

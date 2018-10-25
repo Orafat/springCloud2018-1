@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      name: msc-config-goods-client # 需要从GitHub上读取的资源名称（没有yml后缀）
+      profile: test # 本次访问配置项
+      label: master
+      uri: http://127.0.0.1:3344 # 本微服务启动后先去找3344号服务，通过springcloudconfig获取GitHub服务地址
